@@ -56,8 +56,8 @@ int main()
 	}
 	else {                                  // if class found, continue
 		cout << "Class Main found" << endl;
-		string flowCheckName = "";
-		string flowCheckVersion = "";
+		string flowCheckName ;
+		string flowCheckVersion;
 		bool mainCheck=true;
 		string dataSetName;
 		string dataSetDescription;
@@ -73,7 +73,7 @@ int main()
 			cout << "\n 4. Press 4 to retrieve the description of the flow/implementation : " << endl;
 			cout << "\n 5. Press 5 to retrieve the description of the Task : " << endl;
 			cout << "\n 6. Press 6 to retrieve the description of the Run : " << endl;
-			cout << "\n 7. \n Press any other key to Exit" << endl;
+			cout << "\n 7. Press any other key to Exit" << endl;
 		
 			int selection;
 			cin >> selection;
