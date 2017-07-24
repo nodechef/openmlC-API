@@ -1,0 +1,12 @@
+﻿Build started 7/17/2017 7:27:28 PM.
+     1>Project "c:\Users\sami ullah chattha\documents\visual studio 2015\Projects\Testing2\Testing2\Testing2.vcxproj" on node 2 (Build target(s)).
+     1>Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\sami ullah chattha\documents\visual studio 2015\Projects\Testing2\Debug\Testing2.exe" /INCREMENTAL /NOLOGO "C:\Program Files\Java\jdk1.8.0_111\lib\jvm.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"c:\users\sami ullah chattha\documents\visual studio 2015\Projects\Testing2\Debug\Testing2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\sami ullah chattha\documents\visual studio 2015\Projects\Testing2\Debug\Testing2.lib" /MACHINE:X86 Debug\Source.obj
+     1>Source.obj : error LNK2019: unresolved external symbol __imp__JNI_CreateJavaVM@12 referenced in function _main
+     1>C:\Program Files\Java\jdk1.8.0_111\lib\jvm.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'X86'
+     1>c:\users\sami ullah chattha\documents\visual studio 2015\Projects\Testing2\Debug\Testing2.exe : fatal error LNK1120: 1 unresolved externals
+     1>Done Building Project "c:\Users\sami ullah chattha\documents\visual studio 2015\Projects\Testing2\Testing2\Testing2.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.29
