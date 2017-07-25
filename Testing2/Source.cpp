@@ -80,12 +80,8 @@ int main()
 
 
 			if (selection == 1) {
-				cout << "Please enter your name : " << endl;
-				cin >> dataSetName;
-				jstring jStringParam = env->NewStringUTF(dataSetName.c_str());
-				jmethodID mid2 = env->GetStaticMethodID(cls2, "dataSetList", "(Ljava/lang/String;)V");
-				env->CallStaticVoidMethod(cls2, mid2, jStringParam);
-				env->DeleteLocalRef(jStringParam);
+				jmethodID mid2 = env->GetStaticMethodID(cls2, "dataSetList", "()V");
+				env->CallStaticVoidMethod(cls2, mid2);
 			}
 
 			else if (selection == 2) {
@@ -94,7 +90,7 @@ int main()
 				while (check) {
 					cout << "Please enter the ID of DataSet : " << endl;
 					cin >> id;
-					jmethodID mid2 = env->GetStaticMethodID(cls2, "download", "()V");
+					jmethodID mid2 = env->GetStaticMethodID(cls2, "download", "(I)V");
 					env->CallStaticVoidMethod(cls2, mid2, (jint)id);
 					int downSelect;
 					cout << "\n Select an option below :  " << endl;
@@ -105,12 +101,13 @@ int main()
 
 					if (downSelect == 1) {
 						// Check out and try this function in Java.And print result
-						jmethodID mid2 = env->GetStaticMethodID(cls2, "datasetFeatures", "()V");
+						jmethodID mid2 = env->GetStaticMethodID(cls2, "datasetFeatures", "(I)V");
 						env->CallStaticVoidMethod(cls2, mid2, (jint)id);
 					}
 
 					else if (downSelect == 2) {
-						jmethodID mid2 = env->GetStaticMethodID(cls2, "datasetDownload", "()V");
+						cout << "Calling DatasetDownload" << endl;
+						jmethodID mid2 = env->GetStaticMethodID(cls2, "datasetDownload", "(I)V");
 						env->CallStaticVoidMethod(cls2, mid2, (jint)id);
 					}
 					char check2;
@@ -338,7 +335,7 @@ int main()
 			}
 
 			char mainCheck2;
-			cout << "\n Do you want to checkout anyother RUN ? : Y or N : :" << endl;
+			cout << "\n Do you want to checkout anyother option ? : Y or N : :" << endl;
 			cin >> mainCheck2;
 			if (mainCheck2 != 'Y') {
 				mainCheck = false;
