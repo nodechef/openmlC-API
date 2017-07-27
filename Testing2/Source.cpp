@@ -63,6 +63,7 @@ int main()
 		string dataSetDescription;
 		string filename;
 		string dataUrl;
+
 		while (mainCheck) {
 
 			cout << "<<<<<<<<========Welcome to OpenML C++ Api ===========>>>>>>>>" << endl;
@@ -77,6 +78,7 @@ int main()
 		
 			int selection;
 			cin >> selection;
+			cin.ignore();
 
 
 			if (selection == 1) {
@@ -113,6 +115,7 @@ int main()
 					char check2;
 					cout << "\n Do you want to checkout anyother dataSet ? : Y or N : :" << endl;
 					cin >> check2;
+					cin.ignore();
 					if (check2 != 'Y') {
 						check = false;
 					}
@@ -126,13 +129,17 @@ int main()
 				int uploadCheck;
 				while (check) {
 					cout << "Name of the DataSet :  " << endl;
-					getline(cin, dataSetName); // Doesn't accept strings with spaces.
+					getline(cin, dataSetName); 
+					// Doesn't accept strings with spaces.
+					/*cout << "You entered : " << dataSetName << endl;*/
+
 
 					cout << "Description of the DataSet :  " << endl;
 					getline(cin, dataSetDescription); // Doesn't accept strings with spaces.
 
 					cout << "Press 1 to upload file or Press 2 to post the URL of the file hosted somewhere else(Recommended if file size is > 100MB ) : " << endl;
-					cin >> uploadCheck; 
+					cin >> uploadCheck;
+					cin.ignore();
 
 					if (uploadCheck == 1) {
 						cout << "Filename : " << endl;
@@ -151,6 +158,7 @@ int main()
 					else if (uploadCheck == 2) {
 						cout << "Paste the URL of the dataSet : " << endl;
 						cin >> dataUrl;
+						cin.ignore();
 						jstring jStringParam1 = env->NewStringUTF(dataSetName.c_str());
 						jstring jStringParam2 = env->NewStringUTF(dataSetDescription.c_str());
 						jstring jStringParam3 = env->NewStringUTF(dataUrl.c_str());
@@ -161,8 +169,9 @@ int main()
 						env->DeleteLocalRef(jStringParam3);
 					}
 					char check2;
-					cout << "\n Do you want to checkout anyother task ? : Y or N : :" << endl;
+					cout << "\n Do you want to upload another file ? : Y or N : :" << endl;
 					cin >> check2;
+					cin.ignore();
 					if (check2 != 'Y') {
 						check = false;
 					}
@@ -181,11 +190,13 @@ int main()
 					cout << "Press 5 to Upload implementation files (binary and/or source) to OpenML. : " << endl;
 
 					cin >> flowSelect;
+					cin.ignore();
 
 					if (flowSelect == 1) {
 						int flowID;
 						cout << "Enter the ID of flow :  " << endl;
 						cin >> flowID;
+						cin.ignore();
 						jmethodID mid2 = env->GetStaticMethodID(cls2, "flowDescription", "()V");
 						env->CallStaticVoidMethod(cls2, mid2, (jint)flowID);
 					}
@@ -212,6 +223,7 @@ int main()
 						int flowIDRemove;
 						cout << "Enter the flow ID to delete : " << endl;
 						cin >> flowIDRemove;
+						cin.ignore();
 						jmethodID mid2 = env->GetStaticMethodID(cls2, "Removeflow", "()V");
 						env->CallStaticVoidMethod(cls2, mid2, (jint)flowIDRemove);
 					}
@@ -224,10 +236,13 @@ int main()
 						
 						cout << "Enter the description of Flow : " << endl;
 						cin >> flowDescription;
+						cin.ignore();
 						cout << "Enter the CodeJar File of Flow : " << endl;
 						cin >> CodeJar;
+						cin.ignore();
 						cout << "Enter the sourceZip File of Flow : " << endl;
 						cin >> sourceZip;
+						cin.ignore();
 						
 						jstring jStringParam1 = env->NewStringUTF(flowDescription.c_str());
 						jstring jStringParam2 = env->NewStringUTF(CodeJar.c_str());
@@ -242,6 +257,7 @@ int main()
 					char check2;
 					cout << "\n Do you want to checkout anyother dataSet ? : Y or N : :" << endl;
 					cin >> check2;
+					cin.ignore();
 					if (check2 != 'Y') {
 						check = false;
 					}
@@ -256,10 +272,12 @@ int main()
 					cout << "Press 1 to Retrieve the description of Task :  " << endl;
 					cout << "Press 2 to Retrieve all evaluations for the task over the specified window of the stream :  " << endl;
 					cin >> taskCheck;
+					cin.ignore();
 
 					if (taskCheck == 1) {
 						cout << "Please enter the ID of task : " << endl;
 						cin >> taskId;
+						cin.ignore();
 						// Check out and try this function in Java.And print result
 						jmethodID mid2 = env->GetStaticMethodID(cls2, "taskDescription", "()V");
 						env->CallStaticVoidMethod(cls2, mid2, (jint)taskId);
@@ -272,6 +290,7 @@ int main()
 					char check2;
 					cout << "\n Do you want to checkout anyother task ? : Y or N : :" << endl;
 					cin >> check2;
+					cin.ignore();
 					if (check2 != 'Y') {
 						check = false;
 					}
@@ -288,10 +307,12 @@ int main()
 					cout << "Press 2 to Deletes the Run : " << endl;
 					cout << "Press 3 to  Upload a Run to OpenML : " << endl;
 					cin >> runCheck;
+					cin.ignore();
 
 					if (runCheck == 1) {
 						cout << "Please enter the ID of Run : " << endl;
 						cin >> runId;
+						cin.ignore();
 						// Check out and try this function in Java.And print result
 						jmethodID mid2 = env->GetStaticMethodID(cls2, "runDescription", "()V");
 						env->CallStaticVoidMethod(cls2, mid2, (jint)runId);
@@ -300,6 +321,7 @@ int main()
 					else if (runCheck == 2) {
 						cout << "Please enter the ID of Run to Delete : " << endl;
 						cin >> runId;
+						cin.ignore();
 						jmethodID mid2 = env->GetStaticMethodID(cls2, "runDelete", "()V");
 						env->CallStaticVoidMethod(cls2, mid2, (jint)runId);
 					}
@@ -311,10 +333,11 @@ int main()
 
 						cout << "Enter the First Tag : " << endl;
 						cin >> firstTag;
+						cin.ignore();
 						cout << "Enter the Second Tag : " << endl;
-						cin >> secondTag;
+						cin >> secondTag; cin.ignore();
 						cout << "Enter the enter the name of file with extension and please place it inside uploads folder :  " << endl;
-						cin >> filename;
+						cin >> filename; cin.ignore();
 
 						jstring jStringParam1 = env->NewStringUTF(firstTag.c_str());
 						jstring jStringParam2 = env->NewStringUTF(secondTag.c_str());
@@ -328,6 +351,7 @@ int main()
 					char check2;
 					cout << "\n Do you want to checkout anyother RUN ? : Y or N : :" << endl;
 					cin >> check2;
+					cin.ignore();
 					if (check2 != 'Y') {
 						check = false;
 					}
@@ -337,6 +361,7 @@ int main()
 			char mainCheck2;
 			cout << "\n Do you want to checkout anyother option ? : Y or N : :" << endl;
 			cin >> mainCheck2;
+			cin.ignore();
 			if (mainCheck2 != 'Y') {
 				mainCheck = false;
 			}
