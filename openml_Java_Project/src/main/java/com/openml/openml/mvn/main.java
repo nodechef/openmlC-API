@@ -44,9 +44,11 @@ public class main {
      private static final Scanner input = new Scanner(System.in);
      private static final XStream xstream = XstreamXmlMapping.getInstance();
     
-    public static void main(String[] arg) throws Exception{
+    public static void main(String[] arg) throws Exception {
         System.out.println("Testing 1 2 3 ");
 //        dataSetList();
+//        upload("Sami", "Testing from Java", "dataSet_61");
+//        datasetDownload(61);
     }
     
     
@@ -74,8 +76,10 @@ public class main {
     public static void datasetDownload(int id) throws Exception{
         
         URL myURL = new URL("https://www.openml.org/data/download/"+id+"/?api_key=5ff389fda327b06847db93efd0cbc1ed");
-        HttpConnector.getFileFromUrl(myURL, "C:/Users/Sami Ullah Chattha/Documents/Visual Studio 2015/Projects/Testing2/Testing2/classes/openml/dataSet_"+id+"/",true );
-        System.out.println("\n Data has been successfully downloaded to /openml/ :");
+        String workingDirectory = System.getProperty("user.dir")+"/openml/downloads/";
+        System.out.println(workingDirectory);
+        HttpConnector.getFileFromUrl(myURL, workingDirectory+"dataSet_"+id+"/",true );
+        System.out.println("\n Data has been successfully downloaded to /openml/Downloads :");
         
     }
     
@@ -85,15 +89,21 @@ public class main {
         String feature_name = features[0].getName();
         String type = features[0].getDataType();
         boolean	isTarget = features[0].getIs_target();
+        
+         System.out.println("Feature Name : "+ feature_name + " \t Type : " + type+ " isTarget " +isTarget);
     }
     
     
     
     public static void upload(String dataSetName,String dataSetDescription,String filename) throws Exception{
         DataSetDescription dataset = new DataSetDescription( dataSetName, dataSetDescription, "arff", "class");
-        File description = Conversion.stringToTempFile(xstream.toXML(dataset), filename, "xml");
-        String workingDirectory = System.getProperty("user.dir")+"/openml/uploads";
-        File datasetFile = new File(workingDirectory, filename);
+        File description = Conversion.stringToTempFile(xstream.toXML(dataset), filename, "arff");
+        String workingDirectory = System.getProperty("user.dir")+"/openml/uploads/";
+        System.out.println(workingDirectory);
+        File datasetFile = new File(workingDirectory,filename);
+//        if(datasetFile==null){
+//            System.out.println("Null file : Not found");
+//        }
         //File datasetFile = new File( DATASET_PATH );
         UploadDataSet data = openml.dataUpload( description, datasetFile);
         int data_id = data.getId();
@@ -101,7 +111,7 @@ public class main {
     }
     public static void uploadURL(String dataSetName,String dataSetDescription,String dataUrl ) throws Exception{
         //Registers an existing dataset (hosted elsewhere). The description needs to include the url of the data set. Throws an exception if the upload failed, see openml.data.upload for error codes.
-            //String dataUrl = "http://storm.cis.fordham.edu/~gweiss/data-mining/weka-data/cpu.arff";
+//         String dataUrl = "http://storm.cis.fordham.edu/~gweiss/data-mining/weka-data/cpu.arff";
         DataSetDescription dsd = new DataSetDescription(dataSetName, dataSetDescription, "arff", dataUrl, "class");
         String dsdXML = xstream.toXML(dsd);
         File description = Conversion.stringToTempFile(dsdXML, "test-data", "arff");
